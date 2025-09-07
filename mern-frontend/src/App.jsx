@@ -65,11 +65,13 @@ function App() {
 		);
 	};
 
-	const filteredTasks = tasks.filter((task) => {
-		if (filter === "Active") return !task.completed;
-		else if (filter === "Completed") return task.completed;
-		return true;
-	});
+	const filteredTasks = tasks
+		.filter((task) => {
+			if (filter === "Active") return !task.completed;
+			else if (filter === "Completed") return task.completed;
+			return true;
+		})
+		.sort((a, b) => (a._id < b._id ? 1 : -1));
 
 	useEffect(() => {
 		console.log(API_URL);
@@ -79,8 +81,8 @@ function App() {
 	return (
 		<>
 			<div className="main-container flex justify-center items-star h-screen">
-				<div className="app-container flex flex-col sm:w-full md:w-10/12 lg:w-5/12 rounded-lg gap-5 ">
-					<div className="heading-container w-full flex flex-col justify-center items-center gap-1 py-5">
+				<div className="app-container flex flex-col items-start sm:w-full md:w-10/12 lg:w-5/12 rounded-lg gap-5 ">
+					<div className="heading-container w-full h-1/6 flex flex-col justify-center items-center gap-1 py-5">
 						<div className="flex justify-center items-center gap-1 p-3 text-3xl font-bold">
 							<FaRegCheckSquare />
 							<h1 className="heading flex justify-center items-center p-1 text-xl font-normal ">
@@ -91,7 +93,7 @@ function App() {
 							Todo app to manage your tasks efficiently.
 						</h2>
 					</div>
-					<div className="data-container border rounded-md border-gray-200 w-full flex justify-center items-center flex-col gap-3 py-5">
+					<div className="data-container border rounded-md  h-5/6  border-gray-200 w-full flex justify-start items-center flex-col gap-3 py-5">
 						<div className="form-container flex justify-center items-center gap-1 w-5/6 h-16 ">
 							<Formik
 								initialValues={{ task: "" }}
@@ -168,7 +170,7 @@ function App() {
 								</button>
 							))}
 						</div>
-						<div className="data-list w-5/6 flex flex-col items-center gap-2 h-44 overflow-y-auto">
+						<div className="data-list w-5/6 h-full flex flex-col items-center gap-2  overflow-y-auto">
 							{filteredTasks.length > 0 ? (
 								filteredTasks.map((task) => (
 									<div
