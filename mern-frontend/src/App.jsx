@@ -4,7 +4,7 @@ import { FaTrash, FaRegCheckSquare } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://mytodoapp-8ql0.onrender.com/api/v1";
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
